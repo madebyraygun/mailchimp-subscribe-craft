@@ -49,6 +49,8 @@ class AudienceController extends Controller
     public function actionSubscribe()
     {
         $this->requirePostRequest();
+        $this->enableCsrfValidation = false;
+
         $request = Craft::$app->getRequest();
 
         // get post variables
