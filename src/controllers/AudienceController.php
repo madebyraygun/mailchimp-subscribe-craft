@@ -38,6 +38,15 @@ class AudienceController extends Controller
 
     // Public Methods
     // =========================================================================
+    
+    public function beforeAction($action)
+    {            
+        if ($action->id == 'subscribe') {
+            $this->enableCsrfValidation = false;
+        }
+
+        return parent::beforeAction($action);
+    }
 
     /**
      * Controller action for subscribing an email to a list
@@ -49,7 +58,6 @@ class AudienceController extends Controller
     public function actionSubscribe()
     {
         $this->requirePostRequest();
-        $this->enableCsrfValidation = false;
 
         $request = Craft::$app->getRequest();
 
